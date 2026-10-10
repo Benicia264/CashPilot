@@ -1,0 +1,35 @@
+{
+  "name": "cashpilot",
+  "version": "1.0.0",
+  "description": "Outil fintech",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Benicia264/CashPilot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Benicia264/CashPilot/issues"
+  },
+  "homepage": "https://github.com/Benicia264/CashPilot#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "node-cron": "^4.6.0",
+    "nodemailer": "^10.1.0",
+    "pg": "^8.23.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
