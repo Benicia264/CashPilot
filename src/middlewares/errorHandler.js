@@ -3,7 +3,7 @@ export default (err, req, res, next) => {
     return res.status(400).json({ erreur: err.errors.map((e) => e.message) });
   }
   if (err.name === 'SequelizeUniqueConstraintError') {
-    return res.status(409).json({ erreur: 'Cette valeur existe déjà (numéro de facture en double ?)' });
+    return res.status(409).json({ erreur: 'Cette valeur existe déjà (doublon)' });
   }
   if (err.name === 'SequelizeForeignKeyConstraintError') {
     return res
