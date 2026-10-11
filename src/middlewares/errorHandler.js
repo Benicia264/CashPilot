@@ -13,6 +13,11 @@ export default (err, req, res, next) => {
   if (err.original?.code === '22P02') {
     return res.status(400).json({ erreur: 'Valeur invalide dans la requête' });
   }
+
+  if (err.original?.code === 'P0001') {
+    // erreur levée par le trigger SQL (dernier filet de sécurité)
+    return res.status(409).json({ erreur: err.original.message });
+  }
   const statut = err.statut || 500;
   if (statut === 500) console.error(err);
   res
