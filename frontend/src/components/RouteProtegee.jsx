@@ -1,0 +1,1 @@
+if (roles && !roles.includes(utilisateur.role)) return <Navigate to="/app" replace />;
