@@ -4,12 +4,6 @@
 
 ---
 
-## Aperçu de l'Interface
-
-![Aperçu du Dashboard CashPilot](./docs/aperçu-dashboard.png)
-
----
-
 ## Fonctionnalités Principales
 
 * Tableau de Bord & Indicateurs KPI : Vue synthétique des encaissements, des impayés, du taux de recouvrement et des prévisions de trésorerie sur 90 jours.
