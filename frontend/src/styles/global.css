@@ -1,0 +1,347 @@
+/* ==========================================================================
+   CASHPILOT - DESIGN SYSTEM & GLOBAL STYLES (MOBILE FIRST)
+   ================================================================---------- */
+
+:root {
+  --vert-principal: #057a55;
+  --vert-fonce: #0d543a;
+  --vert-clair: #e6f4ea;
+  --fond-principal: #f9f8f3;
+  --fond-carte: #ffffff;
+  --texte-principal: #1d2128;
+  --texte-secondaire: #667080;
+  --bordure: #e7e4da;
+  --brique: #b91c1c;
+  --ambre: #d97706;
+  --rayon-carte: 12px;
+  --transition: all 0.2s ease-in-out;
+}
+
+/* Base Mobile First */
+html {
+  font-size: 16px;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--fond-principal);
+  color: var(--texte-principal);
+  line-height: 1.5;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ==========================================================================
+   TYPOGRAPHIE & TITRES ADAPTATIFS
+   ================================================================---------- */
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+  color: var(--texte-principal);
+}
+
+h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+}
+
+p {
+  margin: 0 0 1rem 0;
+}
+
+.muted {
+  color: var(--texte-secondaire);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   MISE EN PAGE GLOBALE & CONTeneurs
+   ================================================================---------- */
+
+.app-container, main, div[class*="page"] {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .app-container, main, div[class*="page"] {
+    padding: 2rem;
+  }
+}
+
+/* En-têtes de pages flexibles */
+.entete-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--bordure);
+}
+
+@media (min-width: 640px) {
+  .entete-page {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* ==========================================================================
+   PANNEAUX ET CARTES (UI CARDS)
+   ================================================================---------- */
+
+.panneau {
+  background: var(--fond-carte);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-carte);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+@media (min-width: 768px) {
+  .panneau {
+    padding: 1.75rem;
+  }
+}
+
+/* ==========================================================================
+   BOUTONS & INTERACTIONS
+   ================================================================---------- */
+
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: var(--transition);
+  text-decoration: none;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .bouton {
+    width: auto;
+  }
+}
+
+.bouton-principal {
+  background-color: var(--vert-principal);
+  color: #ffffff;
+}
+
+.bouton-principal:hover:not(:disabled) {
+  background-color: var(--vert-fonce);
+}
+
+.bouton-secondaire {
+  background-color: #ffffff;
+  border-color: var(--bordure);
+  color: var(--texte-principal);
+}
+
+.bouton-secondaire:hover:not(:disabled) {
+  background-color: #f1f0eb;
+}
+
+.bouton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   FORMULAIRES & CHAMPS (RESPONSIVE FIRST)
+   ================================================================---------- */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.champ label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--texte-principal);
+}
+
+.champ input,
+.champ select,
+.champ textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--bordure);
+  background-color: #ffffff;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--texte-principal);
+  transition: var(--transition);
+  outline: none;
+}
+
+.champ input:focus,
+.champ select:focus,
+.champ textarea:focus {
+  border-color: var(--vert-principal);
+  box-shadow: 0 0 0 3px rgba(5, 122, 85, 0.15);
+}
+
+/* ==========================================================================
+   TABLEAUX ADAPTATIFS (SCROLL HORIZONTAL FLUIDE)
+   ================================================================---------- */
+
+.tableau-conteneur {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 0.5rem;
+  border-radius: var(--rayon-carte);
+}
+
+.tableau {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 650px; /* Garantit la lisibilité sur mobile via défilement horizontal */
+}
+
+.tableau th,
+.tableau td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--bordure);
+  font-size: 0.925rem;
+}
+
+.tableau th {
+  background-color: #faf9f5;
+  font-weight: 600;
+  color: var(--texte-secondaire);
+}
+
+/* ==========================================================================
+   BADGES DE STATUTS
+   ================================================================---------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-payee, .badge-ok {
+  background-color: var(--vert-clair);
+  color: var(--vert-fonce);
+}
+
+.badge-retard {
+  background-color: #fef2f2;
+  color: var(--brique);
+}
+
+.badge-neutre {
+  background-color: #f1f0eb;
+  color: var(--texte-secondaire);
+}
+
+/* ==========================================================================
+   MESSAGES D'ERREUR ET DE SUCCÈS
+   ================================================================---------- */
+
+.message-erreur {
+  background-color: #fef2f2;
+  color: var(--brique);
+  border: 1px solid #fecaca;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.message-succes {
+  background-color: var(--vert-clair);
+  color: var(--vert-fonce);
+  border: 1px solid #b7e4c7;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   PAGE D'ACCUEIL / AUTHENTIFICATION (MAGNIFIQUE & SAAS)
+   ================================================================---------- */
+
+.auth-page-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f9f8f3 0%, #eef5f1 100%);
+}
+
+.auth-carte {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border: 1px solid var(--bordure);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 640px) {
+  .auth-carte {
+    padding: 2.5rem;
+  }
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.auth-logo h1 {
+  font-size: 1.75rem;
+  color: var(--vert-principal);
+  margin: 0;
+}
