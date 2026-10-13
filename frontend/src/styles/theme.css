@@ -1,0 +1,75 @@
+/* Palette : nuit et outremer, ivoire, plus le trio vert, ambre, rouge */
+:root {
+  --nuit-950: #0d0d38;
+  --nuit-900: #16165c;
+  --nuit-800: #1f1f7a;
+  --nuit-700: #2d2ba8;
+  --nuit-300: #9c9bd9;
+  --nuit-100: #e4e3fa;
+  --nuit-50: #f1f0fe;
+
+  --outremer: #4b47e5;
+  --outremer-fonce: #3b37c9;
+  --outremer-pale: #e9e8ff;
+
+  --ivoire: #f8f7f3;
+  --ivoire-2: #efede6;
+  --ligne: #e7e4da;
+  --ligne-forte: #d6d2c6;
+
+  --ambre: #e7b63c;
+  --ambre-vif: #f0c458;
+  --ambre-fonce: #7d5a0b;
+  --ambre-pale: #fbf0d0;
+
+  --vert: #2f7d4f;
+  --vert-pale: #e3f1e7;
+  --vert-fonce: #1e5c37;
+
+  --brique: #c8453b;
+  --brique-pale: #f9e4e1;
+
+  /* Anciens noms, conservés pour que le reste du code continue de fonctionner */
+  --laiton: var(--ambre);
+  --laiton-vif: var(--ambre-vif);
+  --laiton-fonce: var(--ambre-fonce);
+  --laiton-pale: var(--ambre-pale);
+  --saphir-pale: var(--vert-pale);
+  --saphir-fonce: var(--vert-fonce);
+}
+
+a {
+  color: var(--outremer-fonce);
+}
+
+:focus-visible {
+  outline-color: var(--outremer);
+}
+
+.bouton-principal {
+  background: var(--outremer);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(22, 22, 92, 0.3);
+}
+
+.bouton-principal:hover:not(:disabled) {
+  background: var(--outremer-fonce);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 10px 20px -8px rgba(75, 71, 229, 0.6);
+}
+
+.champ input:focus,
+.champ select:focus,
+.champ textarea:focus {
+  border-color: var(--outremer);
+  box-shadow: 0 0 0 4px rgba(75, 71, 229, 0.16);
+}
+
+.badge-payee,
+.badge-ok {
+  background: var(--vert-pale);
+  color: var(--vert-fonce);
+}
+
+.l-entete {
+  background: rgba(22, 22, 92, 0.86);
+}

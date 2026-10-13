@@ -1,0 +1,167 @@
+/* =================================================================
+   CashPilot - Styles Connexion & Inscription
+   =================================================================== */
+
+.auth-page {
+  min-height: 100vh;
+  background: #f8f7f3; /* Fond ivoire Sessio */
+  display: flex;
+  flex-direction: column;
+  color: #1d2128;
+  font-family: 'Onest', system-ui, sans-serif;
+}
+
+/* En-tête avec logo centré */
+.auth-header {
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #0b1530;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Conteneur centré pour la carte */
+.auth-conteneur {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem 3rem;
+  width: 100%;
+}
+
+/* Carte d'authentification compacte (Max 440px) */
+.auth-carte {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border: 1px solid #e7e4da;
+  border-radius: 20px;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
+}
+
+.auth-entete {
+  margin-bottom: 1.75rem;
+  text-align: center;
+}
+
+.auth-entete h2 {
+  margin: 0 0 0.5rem;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0b1530;
+}
+
+.auth-soustitre {
+  margin: 0;
+  color: #667080;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+/* Champs de formulaires */
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.1rem;
+}
+
+.champ label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2b3342;
+}
+
+.champ input {
+  height: 44px;
+  padding: 0 0.9rem;
+  border: 1px solid #d6d2c6;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #1d2128;
+  font-size: 0.95rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.champ input:focus {
+  outline: none;
+  border-color: #057a55;
+  box-shadow: 0 0 0 3px rgba(5, 122, 85, 0.12);
+}
+
+.champ input::placeholder {
+  color: #a0a6b2;
+}
+
+.aide {
+  font-size: 0.78rem;
+  color: #667080;
+}
+
+/* Bouton Vert Sapin Sessio */
+.auth-carte .bouton-principal {
+  background: #057a55 !important;
+  color: #ffffff !important;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  height: 46px;
+  width: 100%;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.auth-carte .bouton-principal:hover:not(:disabled) {
+  background: #046244 !important;
+}
+
+/* Pied de carte (Lien inscription/connexion) */
+.auth-pied {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e7e4da;
+  text-align: center;
+  font-size: 0.88rem;
+  color: #667080;
+}
+
+.auth-pied a {
+  color: #057a55;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-pied a:hover {
+  text-decoration: underline;
+}
+
+/* Lien retour à l'accueil */
+.auth-retour {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.auth-retour a {
+  color: #667080;
+  font-size: 0.88rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-retour a:hover {
+  color: #0b1530;
+}

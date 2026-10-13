@@ -1,0 +1,289 @@
+/* ---------- Fenêtre modale ---------- */
+.modal-fond {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(13, 13, 56, 0.55);
+  animation: fondu 0.2s ease-out both;
+}
+
+.modal {
+  width: 100%;
+  max-height: 92dvh;
+  overflow-y: auto;
+  border-radius: 22px 22px 0 0;
+  background: #fff;
+  animation: feuille-monte 0.3s var(--ease) both;
+}
+
+.modal-entete {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.4rem 0.6rem;
+  background: #fff;
+}
+
+.modal-entete h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.modal-corps {
+  padding: 0.6rem 1.4rem calc(1.4rem + env(safe-area-inset-bottom));
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+@media (min-width: 640px) {
+  .modal-fond {
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  .modal {
+    width: 480px;
+    border-radius: 20px;
+    animation: modal-entree 0.25s var(--ease) both;
+  }
+}
+
+@keyframes modal-entree {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+}
+
+/* ---------- Boutons spécifiques ---------- */
+.bouton-danger {
+  background: var(--brique);
+  color: #fff;
+}
+
+.bouton-danger:hover:not(:disabled) {
+  background: #ad382f;
+}
+
+.bouton-icone.danger:hover {
+  background: var(--brique-pale);
+  color: var(--brique);
+}
+
+.bouton-icone:hover {
+  background: rgba(22, 22, 92, 0.07);
+}
+
+/* ---------- Message de confirmation ---------- */
+.notice {
+  margin-bottom: 1rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  background: var(--vert-pale);
+  color: var(--vert-fonce);
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: page-entree 0.25s var(--ease) both;
+}
+
+/* ---------- Recherche ---------- */
+.recherche {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 420px;
+  height: 44px;
+  margin-bottom: 1rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--ligne-forte);
+  border-radius: 12px;
+  background: #fff;
+  color: #6b6f7a;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.recherche:focus-within {
+  border-color: var(--outremer);
+  box-shadow: 0 0 0 4px rgba(75, 71, 229, 0.14);
+}
+
+.recherche input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: var(--anthracite-900);
+  font: inherit;
+  font-size: 16px;
+}
+
+/* ---------- Liste des clients ---------- */
+.liste-clients {
+  overflow: hidden;
+}
+
+.ligne-client {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1.1fr) minmax(0, 1.4fr) auto auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1.2rem;
+  border-top: 1px solid var(--ligne);
+  transition: background-color 0.15s;
+}
+
+.ligne-client:first-child {
+  border-top: 0;
+}
+
+.ligne-client:hover {
+  background: #faf9f5;
+}
+
+.initiale {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--outremer-pale);
+  color: var(--outremer);
+  font-family: var(--police-titre);
+  font-weight: 600;
+}
+
+.client-id {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.client-id strong,
+.client-contact span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.client-id-contact {
+  display: none;
+  overflow: hidden;
+  color: #6b6f7a;
+  font-size: 0.85rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.client-contact {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  color: #6b6f7a;
+  font-size: 0.88rem;
+}
+
+.actions-ligne {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.liste-vide {
+  margin: 0;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .ligne-client {
+    grid-template-columns: 42px minmax(0, 1fr) auto;
+    gap: 0.4rem 0.85rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .client-contact {
+    display: none;
+  }
+
+  .client-id-contact {
+    display: block;
+  }
+
+  .ligne-client .badge {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: start;
+  }
+
+  .actions-ligne {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+  }
+}
+
+/* ==========================================================================
+   ANIMATIONS DE LA LANDING PAGE (HOVER & EFFETS LÉVITATION)
+   ========================================================================== */
+
+/* Animation de base pour toutes les cartes interactives de la landing page */
+.landing-carte, 
+div[class*="carte"], 
+section[class*="carte"] {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
+/* Effet de lévitation sophistiqué au survol */
+.landing-carte:hover, 
+div[class*="carte"]:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(22, 22, 92, 0.08), 0 4px 12px rgba(5, 122, 85, 0.05);
+}
+
+/* Effet d'apparition fluide (Fade-in & Slide-up) pour les sections de la landing */
+@keyframes landingEntree {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.landing-section, .hero-landing {
+  animation: landingEntree 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Effet brillant / lumineux subtil sur les boutons principaux de la landing */
+.bouton-principal {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bouton-principal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(5, 122, 85, 0.25);
+}
+
+/* Effet zoom doux sur les icônes ou illustrations au survol */
+.landing-icon-box {
+  transition: transform 0.3s ease;
+}
+
+.landing-carte:hover .landing-icon-box {
+  transform: scale(1.1) rotate(3deg);
+}

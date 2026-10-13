@@ -14,6 +14,7 @@ import paiementRoute from './routes/paiementRoute.js';
 import assistantRoute from './routes/assistantRoute.js';
 import tresorerieRoute from './routes/tresorieRoute.js';
 import relanceRoute from './routes/relanceRoute.js';
+import dashboardRoute from './routes/dashboardRoute.js';
 
 const app = express();
 app.use(cors());
@@ -32,6 +33,7 @@ app.use('/api/factures', protege, factureRoute);
 app.use('/api/assistant', authentifier, assistantRoute); // POST autorisé aux lecteurs : ce sont des questions
 app.use('/api/tresorerie', protege, tresorerieRoute);
 app.use('/api/relances', protege, relanceRoute);
+app.use('/api/dashboard', protege, dashboardRoute);
 
 app.use(errorHandler); // toujours en dernier
 
