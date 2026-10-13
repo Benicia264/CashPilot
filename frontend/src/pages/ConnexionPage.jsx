@@ -1,17 +1,15 @@
 import { useState } from 'react';
-import { Link, Navigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import PageAuth from '../components/PageAuth.jsx';
 
 export default function ConnexionPage() {
-  const { utilisateur, connecter } = useAuth();
-  const lieu = useLocation();
+  const { connecter } = useAuth();
+  const naviguer = useNavigate();
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
   const [erreur, setErreur] = useState('');
   const [envoi, setEnvoi] = useState(false);
-
-  if (utilisateur) return <Navigate to={lieu.state?.depuis?.pathname || '/app'} replace />;
 
   const soumettre = async (e) => {
     e.preventDefault();
@@ -19,8 +17,9 @@ export default function ConnexionPage() {
     setEnvoi(true);
     try {
       await connecter(email, motDePasse);
+      naviguer('/app');
     } catch (err) {
-      setErreur(err.message);
+      setErreur(err.message || "Identifiants incorrects.");
     } finally {
       setEnvoi(false);
     }
@@ -48,6 +47,7 @@ export default function ConnexionPage() {
           <input
             id="email"
             type="email"
+            placeholder="vous@entreprise.com"
             autoComplete="email"
             required
             value={email}
@@ -60,6 +60,7 @@ export default function ConnexionPage() {
           <input
             id="motDePasse"
             type="password"
+            placeholder="••••••••••••"
             autoComplete="current-password"
             required
             value={motDePasse}

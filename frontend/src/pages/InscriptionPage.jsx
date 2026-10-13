@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import PageAuth from '../components/PageAuth.jsx';
 
 export default function InscriptionPage() {
-  const { utilisateur, inscrire } = useAuth();
+  const { inscrire } = useAuth();
+  const naviguer = useNavigate();
   const [formulaire, setFormulaire] = useState({
     entrepriseNom: '',
     nom: '',
@@ -13,8 +14,6 @@ export default function InscriptionPage() {
   });
   const [erreur, setErreur] = useState('');
   const [envoi, setEnvoi] = useState(false);
-
-  if (utilisateur) return <Navigate to="/app" replace />;
 
   const modifier = (champ) => (e) =>
     setFormulaire((precedent) => ({ ...precedent, [champ]: e.target.value }));
@@ -25,8 +24,9 @@ export default function InscriptionPage() {
     setEnvoi(true);
     try {
       await inscrire(formulaire);
+      naviguer('/app');
     } catch (err) {
-      setErreur(err.message);
+      setErreur(err.message || "Impossible de créer le compte.");
     } finally {
       setEnvoi(false);
     }
@@ -34,15 +34,15 @@ export default function InscriptionPage() {
 
   return (
     <PageAuth
-      titre="Créez votre compte"
-      sousTitre="Vous serez le propriétaire de votre entreprise sur CashPilot."
+      titre="Créez votre compte CashPilot"
+      sousTitre="Pilotez votre trésorerie et anticipez vos découverts en toute sérénité."
       pied={
         <>
           Déjà un compte ? <Link to="/connexion">Se connecter</Link>
         </>
       }
     >
-      <form onSubmit={soumettre}>
+      <form onSubmit={soumettre} className="formulaire-auth-moderne">
         {erreur && (
           <div className="message-erreur" role="alert">
             {erreur}
@@ -53,6 +53,7 @@ export default function InscriptionPage() {
           <label htmlFor="entrepriseNom">Nom de l'entreprise</label>
           <input
             id="entrepriseNom"
+            placeholder="Ex : Boulangerie Ngoma"
             required
             maxLength={150}
             value={formulaire.entrepriseNom}
@@ -61,9 +62,10 @@ export default function InscriptionPage() {
         </div>
 
         <div className="champ">
-          <label htmlFor="nom">Votre nom</label>
+          <label htmlFor="nom">Votre nom complet</label>
           <input
             id="nom"
+            placeholder="Ex : Jean-Claude Itoua"
             autoComplete="name"
             required
             maxLength={150}
@@ -73,10 +75,11 @@ export default function InscriptionPage() {
         </div>
 
         <div className="champ">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Adresse email professionnelle</label>
           <input
             id="email"
             type="email"
+            placeholder="vous@entreprise.com"
             autoComplete="email"
             required
             value={formulaire.email}
@@ -89,6 +92,7 @@ export default function InscriptionPage() {
           <input
             id="motDePasse"
             type="password"
+            placeholder="••••••••••••"
             autoComplete="new-password"
             required
             minLength={8}
@@ -96,11 +100,11 @@ export default function InscriptionPage() {
             value={formulaire.motDePasse}
             onChange={modifier('motDePasse')}
           />
-          <span className="aide">Entre 8 et 72 caractères.</span>
+          <span className="aide">Minimum 8 caractères sécurisés.</span>
         </div>
 
         <button className="bouton bouton-principal bouton-bloc bouton-grand" disabled={envoi}>
-          {envoi ? 'Création…' : 'Créer mon compte'}
+          {envoi ? 'Création en cours…' : 'Créer mon compte'}
         </button>
       </form>
     </PageAuth>

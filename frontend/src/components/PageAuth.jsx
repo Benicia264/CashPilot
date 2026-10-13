@@ -1,34 +1,31 @@
 import { Link } from 'react-router-dom';
 import Marque from './Marque.jsx';
+import '../styles/auth.css';
 
-export default function PageAuth({ titre, sousTitre, pied, children }) {
+export default function PageAuth({ titre, sousTitre, children, pied }) {
   return (
-    <div className="auth">
-      <aside className="auth-panneau">
+    <div className="auth-page">
+      <header className="auth-header">
         <Link to="/" className="auth-logo">
-          <Marque taille={34} />
-          CashPilot
+          <Marque taille={28} />
+          <span>CashPilot</span>
         </Link>
-        <div>
-          <h2>Gardez un œil sur l'argent qui entre et qui sort.</h2>
-          <p>Factures, relances et prévisions de trésorerie, au même endroit.</p>
-        </div>
-        <p className="auth-bas">Vos données sont séparées de celles des autres entreprises.</p>
-      </aside>
+      </header>
 
-      <main className="auth-formulaire">
-        <div className="auth-boite">
-          <Link to="/" className="auth-logo-mobile">
-            <Marque taille={30} />
-            CashPilot
-          </Link>
-          <h1>{titre}</h1>
-          <p className="muted">{sousTitre}</p>
-          {children}
-          <p className="lien-bas">{pied}</p>
-          <Link to="/" className="auth-retour">
-            Retour à l'accueil
-          </Link>
+      <main className="auth-conteneur">
+        <div className="auth-carte">
+          <div className="auth-entete">
+            <h2>{titre}</h2>
+            {sousTitre && <p className="auth-soustitre">{sousTitre}</p>}
+          </div>
+
+          <div className="auth-corps">{children}</div>
+
+          {pied && <div className="auth-pied">{pied}</div>}
+        </div>
+
+        <div className="auth-retour">
+          <Link to="/">← Retour à l'accueil</Link>
         </div>
       </main>
     </div>

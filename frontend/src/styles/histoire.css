@@ -1,0 +1,365 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.l-histoire {
+  position: relative;
+  height: 430vh;
+  background: var(--nuit-900);
+  color: var(--ivoire);
+}
+
+/* La scène reste collée sous l'en-tête pendant tout le défilement */
+.l-histoire-scene {
+  position: sticky;
+  top: 66px;
+  display: flex;
+  align-items: center;
+  height: calc(100vh - 66px);
+  height: calc(100svh - 66px);
+  overflow: hidden;
+}
+
+.l-histoire-scene::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 70% 40%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 80% at 70% 40%, #000 20%, transparent 75%);
+  pointer-events: none;
+}
+
+/* Mouvement réduit : plus d'épinglage, on affiche directement le résultat */
+.l-histoire-statique {
+  height: auto;
+}
+
+.l-histoire-statique .l-histoire-scene {
+  position: relative;
+  top: 0;
+  height: auto;
+  padding: clamp(3.5rem, 8vw, 6rem) 0;
+}
+
+.l-histoire-grille {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr);
+  gap: clamp(1.5rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+/* ---------- Textes ---------- */
+.h-textes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.7rem;
+}
+
+.h-etape {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1rem;
+  opacity: 0.3;
+  transform: translateX(-4px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.h-etape.actif {
+  opacity: 1;
+  transform: none;
+}
+
+.l-histoire-statique .h-etape {
+  display: grid;
+  opacity: 1;
+  transform: none;
+}
+
+.h-etape-num {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  font-family: var(--police-titre);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.h-etape.actif .h-etape-num {
+  border-color: var(--ambre);
+  background: var(--ambre);
+  color: var(--nuit-900);
+}
+
+.l-histoire .h-etape h3 {
+  margin: 0 0 0.4rem;
+  color: var(--ivoire);
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  line-height: 1.2;
+}
+
+.l-histoire .h-etape p {
+  max-width: 30rem;
+  color: #b9b8e8;
+  font-size: 0.98rem;
+}
+
+/* ---------- Panneau du graphique ---------- */
+.h-panneau {
+  min-width: 0;
+  padding: clamp(1rem, 2.4vw, 1.6rem);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.h-entete {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.h-libelle {
+  display: block;
+  color: #b9b8e8;
+  font-size: 0.82rem;
+}
+
+.h-entete strong {
+  display: block;
+  color: var(--ivoire);
+  font-family: var(--police-titre);
+  font-size: clamp(1.9rem, 4.6vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s;
+}
+
+.h-entete strong small {
+  color: #9a99d6;
+  font-family: var(--police-texte);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.h-entete strong.negatif {
+  color: #ff8f84;
+}
+
+.h-entete strong.positif {
+  color: #7fe0a3;
+}
+
+.h-evenement {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: center;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.09);
+  font-size: 0.82rem;
+  animation: h-pop 0.35s var(--ease) both;
+}
+
+.h-evenement b {
+  font-variant-numeric: tabular-nums;
+}
+
+.h-evenement .neg {
+  color: #ff8f84;
+}
+
+.h-evenement .pos {
+  color: #7fe0a3;
+}
+
+@keyframes h-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.h-graphique-boite {
+  position: relative;
+}
+
+.h-graphique {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.h-chip {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  animation: h-pop 0.4s var(--ease) both;
+}
+
+.h-chip-rouge {
+  background: var(--brique);
+}
+
+.h-chip-vert {
+  right: 2%;
+  background: var(--vert);
+}
+
+.h-grille {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+}
+
+.h-zero {
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 5;
+}
+
+.h-trait {
+  stroke: #ff6f61;
+  stroke-width: 1.4;
+  stroke-dasharray: 3 4;
+}
+
+.h-zone-rouge {
+  fill: rgba(255, 111, 97, 0.16);
+}
+
+.h-ligne-a,
+.h-ligne-b,
+.h-ligne-rouge {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.h-ligne-a {
+  stroke: #c7c6ff;
+}
+
+.h-ligne-rouge {
+  stroke: #ff6f61;
+}
+
+.h-ligne-b {
+  stroke: #4fd28a;
+}
+
+.h-marque {
+  fill: var(--nuit-900);
+  stroke: #c7c6ff;
+  stroke-width: 2;
+}
+
+.h-curseur {
+  transition: transform 0.12s linear;
+}
+
+.h-anneau {
+  fill: rgba(231, 182, 60, 0.25);
+}
+
+.h-point {
+  fill: var(--ambre);
+  stroke: var(--nuit-900);
+  stroke-width: 3;
+  transition: fill 0.3s;
+}
+
+.h-point.neg {
+  fill: #ff6f61;
+}
+
+.h-point.vert {
+  fill: #4fd28a;
+}
+
+.h-axe {
+  fill: #9a99d6;
+  font: 500 12px var(--police-texte);
+}
+
+.h-progression {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.h-progression span {
+  display: block;
+  height: 100%;
+  background: var(--ambre);
+  transform-origin: left;
+}
+
+/* ---------- Téléphone ---------- */
+@media (max-width: 860px) {
+  .l-histoire {
+    height: 380vh;
+  }
+
+  .l-histoire-grille {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.1rem;
+  }
+
+  .h-textes {
+    min-height: 8.5rem;
+  }
+
+  .h-etape:not(.actif) {
+    display: none;
+  }
+
+  .h-etape-num {
+    width: 26px;
+    height: 26px;
+  }
+
+  .h-entete strong {
+    font-size: 1.9rem;
+  }
+
+  .h-evenement {
+    font-size: 0.74rem;
+    padding: 0.35rem 0.65rem;
+  }
+
+  .h-axe {
+    font-size: 21px;
+  }
+}
