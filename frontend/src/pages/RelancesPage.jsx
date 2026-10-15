@@ -15,8 +15,8 @@ export default function RelancesPage() {
   const { peutModifier } = useAuth();
 
   // API Backend : Récupération de l'historique des relances et des règles
-  const { donnees: relances, charger: rechargerRelances, erreur: erreurRelances } = useApi('/relances');
-  const { donnees: regles, charger: rechargerRegles } = useApi('/relances/regles');
+  const { donnees: relances, recharger: rechargerRelances, erreur: erreurRelances } = useApi('/relances');
+  const { donnees: regles, recharger: rechargerRegles } = useApi('/relances/regles');
 
   const [onglet, setOnglet] = useState('historique'); // 'historique' ou 'regles'
   const [chargementExec, setChargementExec] = useState(false);

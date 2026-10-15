@@ -55,7 +55,7 @@ export default function TresoreriePage() {
         corps: { montant: Number(nouveauSolde) },
       });
       setNouveauSolde('');
-      projection.charger();
+      projection.recharger();
     } catch (err) {
       setErreurSolde(err.message || "Erreur lors de l'enregistrement du solde.");
     } finally {
@@ -80,7 +80,7 @@ export default function TresoreriePage() {
       });
       setMouvementForm({ libelle: '', type: 'depense', montant: '', datePrevue: '', recurrence: 'aucune' });
       setAfficherMvtForm(false);
-      await Promise.all([mouvementsApi.charger(), projection.charger()]);
+      await Promise.all([mouvementsApi.recharger(), projection.recharger()]);
     } catch (err) {
       setErreurMvt(err.message || "Erreur lors de l'ajout du mouvement.");
     } finally {
@@ -92,7 +92,7 @@ export default function TresoreriePage() {
     if (!window.confirm("Voulez-vous supprimer ce mouvement prévu ?")) return;
     try {
       await api(`/tresorerie/mouvements/${id}`, { methode: 'DELETE' });
-      await Promise.all([mouvementsApi.charger(), projection.charger()]);
+      await Promise.all([mouvementsApi.recharger(), projection.recharger()]);
     } catch (err) {
       alert(err.message || "Impossible de supprimer le mouvement.");
     }
@@ -257,7 +257,7 @@ export default function TresoreriePage() {
               </div>
             )}
 
-            {/* Conteneur du graphique avec hauteur fixe explicite (280px) pour éviter le rectangle vide */}
+            {/* Conteneur du graphique */}
             <div style={{ width: '100%', height: '280px', margin: '1.5rem 0' }}>
               <CourbeTresorerie serie={serie} />
             </div>
