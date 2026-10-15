@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Plus, FileText, CheckCircle2, Clock, AlertCircle } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { api } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useApi } from '../hooks/useApi.js';
@@ -14,7 +14,7 @@ const STATUTS_CONFIG = {
 
 export default function FacturesPage() {
   const { peutModifier } = useAuth();
-  const { donnees: factures, charger: rechargerFactures, erreur } = useApi('/factures');
+  const { donnees: factures, recharger: rechargerFactures, erreur } = useApi('/factures');
   const { donnees: clients } = useApi('/clients');
   
   const [afficherFormulaire, setAfficherFormulaire] = useState(false);
